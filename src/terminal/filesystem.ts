@@ -4,7 +4,7 @@
  */
 import { portfolio } from '../data/portfolio';
 import { session } from '../core/state';
-import type { Project } from '../data/schema';
+import type { Job, Project } from '../data/schema';
 import { renderDoc } from './doc';
 
 export interface VFile {
@@ -15,6 +15,10 @@ export interface VFile {
   read: () => string[];
   /** Optional readable card view used by `cat` (falls back to read()). */
   render?: () => HTMLElement;
+}
+
+function jobEntry(j: Job) {
+  return { title: `${j.title} · ${j.org}`, meta: `${j.start} – ${j.end} · ${j.location}`, bullets: j.bullets, tags: j.skills, note: j.takeaway };
 }
 
 export function projectDoc(pr: Project): HTMLElement {
@@ -108,15 +112,8 @@ export function files(): VFile[] {
       lockedHint: 'exploit 3306',
       render: () =>
         renderDoc('experience.log', [
-          {
-            entries: p.experience.map((j) => ({
-              title: `${j.title} · ${j.org}`,
-              meta: `${j.start} – ${j.end} · ${j.location}`,
-              bullets: j.bullets,
-              tags: j.skills,
-              note: j.takeaway,
-            })),
-          },
+          { entries: p.experience.filter((j) => !j.secondary).map(jobEntry) },
+          { heading: 'Other experience', entries: p.experience.filter((j) => j.secondary).map(jobEntry) },
         ]),
       read: () =>
         p.experience.flatMap((j) => [
