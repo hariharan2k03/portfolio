@@ -330,7 +330,10 @@ function exploit(args: string[], input: string, ctx: Ctx): void {
       const file = s.section === 'experience' ? 'experience.log' : 'certs.txt';
       t.print(`[+] ${s.section} unlocked. Dumping ${file}:`, 'ok');
       const f = files().find((x) => x.path === file);
-      if (f) t.print(f.read());
+      if (f) {
+        if (f.render) t.printNode(f.render(), true);
+        else t.print(f.read());
+      }
       refreshChips(ctx);
       checkThreshold(ctx);
     }),
@@ -411,7 +414,8 @@ function cat(arg: string, input: string, ctx: Ctx): void {
     t.print(`cat: ${arg}: Permission denied 🔒 — unlock it with: ${f.lockedHint}`, 'warn');
     return;
   }
-  t.print(f.read());
+  if (f.render) t.printNode(f.render(), true);
+  else t.print(f.read());
 }
 
 function sudo(arg: string, t: Terminal, ctx: Ctx): void {

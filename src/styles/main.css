@@ -660,3 +660,28 @@ body { font-size: 15px; }
 @media (min-width: 1900px) {
   .term-body { font-size: 1.15rem; }
 }
+
+/* ------------------------------ readable file viewer ------------------------------ */
+.term-output { line-height: 1.6; }
+.line { padding-left: 2ch; text-indent: -2ch; } /* wrapped lines indent under the text */
+.tdoc { margin: 10px 0 14px; font-family: var(--mono); }
+.tdoc-file { color: var(--dim); font-size: 0.8em; margin-bottom: 6px; }
+.tdoc-sec + .tdoc-sec { margin-top: 12px; }
+.tdoc-sh { margin: 0 0 6px; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); font-weight: 700; }
+.tdoc-entry {
+  border: 1px solid var(--line); border-left: 3px solid var(--cyan); border-radius: 8px;
+  background: rgba(4, 14, 30, 0.7); padding: 12px 16px; margin-bottom: 10px; max-width: 78ch;
+}
+.tdoc-entry:last-child { margin-bottom: 0; }
+.tdoc-h { color: var(--cyan); font-weight: 700; font-size: 1.02em; }
+.tdoc-h:empty { display: none; }
+.tdoc-meta { color: var(--muted); font-size: 0.86em; margin-top: 2px; }
+.tdoc-text { margin: 8px 0 0; color: #d7e3f4; }
+.tdoc-ul { margin: 8px 0 0; padding-left: 1.4em; display: grid; gap: 5px; }
+.tdoc-ul li { color: #d7e3f4; }
+.tdoc-ul li::marker { content: '▸  '; color: var(--teal); }
+.tdoc-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; }
+.tdoc-tags li { font-size: 0.78em; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line-hi); background: rgba(59, 140, 255, 0.1); color: #cfe3ff; }
+.tdoc-note { margin: 10px 0 0; padding: 6px 10px; border-radius: 6px; background: rgba(47, 224, 181, 0.07); color: var(--teal); font-size: 0.9em; }
+.tdoc-links { margin: 10px 0 0; display: flex; gap: 14px; }
+@media (max-width: 640px) { .tdoc-entry { padding: 10px 12px; } }

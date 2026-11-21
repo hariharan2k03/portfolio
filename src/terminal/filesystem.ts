@@ -5,6 +5,7 @@
 import { portfolio } from '../data/portfolio';
 import { session } from '../core/state';
 import type { Project } from '../data/schema';
+import { renderDoc } from './doc';
 
 export interface VFile {
   path: string; // relative to ~, e.g. "projects/myorbit.md"
@@ -12,6 +13,21 @@ export interface VFile {
   unlocked: () => boolean;
   lockedHint: string;
   read: () => string[];
+  /** Optional readable card view used by `cat` (falls back to read()). */
+  render?: () => HTMLElement;
+}
+
+export function projectDoc(pr: Project): HTMLElement {
+  const links = (Object.entries(pr.links).filter(([, v]) => v) as [string, string][]).map(
+    ([k, v]) => [k === 'github' ? 'GitHub' : k === 'writeup' ? 'Write-up' : 'Demo', v] as [string, string],
+  );
+  return renderDoc(`projects/${pr.id}.md`, [
+    { entries: [{ title: pr.title, meta: pr.role, text: pr.problem, tags: pr.tools, links }] },
+    { heading: 'Approach', entries: [{ title: '', bullets: pr.approach }] },
+    { heading: 'Outcome', entries: [{ title: '', bullets: pr.outcomes }] },
+    ...(pr.security?.length ? [{ heading: 'Security angle', entries: [{ title: '', bullets: pr.security }] }] : []),
+    { heading: 'More', entries: [{ title: '', note: `Run "open ${pr.id}" for the full case study.` }] },
+  ]);
 }
 
 const p = portfolio;
@@ -49,6 +65,27 @@ export function files(): VFile[] {
       path: 'about.txt',
       unlocked: () => session.compromised.has('about'),
       lockedHint: 'enum 22',
+      render: () =>
+        renderDoc('about.txt', [
+          {
+            entries: [
+              {
+                title: `${p.person.name} (${p.person.handle})`,
+                meta: `${p.person.location} · ${p.person.targetRoles.join(' · ')}`,
+                text: p.person.summary,
+              },
+            ],
+          },
+          { heading: 'Focus areas', entries: [{ title: '', bullets: p.person.interests }] },
+          {
+            heading: 'Education',
+            entries: p.education.map((e) => ({
+              title: e.degree,
+              meta: [e.school, [e.start, e.end].filter(Boolean).join(' – '), e.location].filter(Boolean).join(' · '),
+              bullets: e.details,
+            })),
+          },
+        ]),
       read: () => [
         p.person.summary,
         '',
@@ -69,6 +106,18 @@ export function files(): VFile[] {
       path: 'experience.log',
       unlocked: () => session.compromised.has('experience'),
       lockedHint: 'exploit 3306',
+      render: () =>
+        renderDoc('experience.log', [
+          {
+            entries: p.experience.map((j) => ({
+              title: `${j.title} · ${j.org}`,
+              meta: `${j.start} – ${j.end} · ${j.location}`,
+              bullets: j.bullets,
+              tags: j.skills,
+              note: j.takeaway,
+            })),
+          },
+        ]),
       read: () =>
         p.experience.flatMap((j) => [
           `[${j.start} – ${j.end}] ${j.title} @ ${j.org} (${j.location})`,
@@ -82,6 +131,16 @@ export function files(): VFile[] {
       path: 'certs.txt',
       unlocked: () => session.compromised.has('certifications'),
       lockedHint: 'exploit 8443',
+      render: () =>
+        renderDoc('certs.txt', [
+          {
+            heading: 'Certifications',
+            entries: p.certifications.length
+              ? p.certifications.map((c) => ({ title: c.name, meta: `${c.issuer} · ${c.status.replace('-', ' ')}${c.date ? ` · ${c.date}` : ''}` }))
+              : [{ title: 'None listed yet', text: 'The Master of Cyber Security comes first.' }],
+          },
+          { heading: 'Skills', entries: p.skills.map((g) => ({ title: g.group, tags: g.items })) },
+        ]),
       read: () => [
         ...(p.certifications.length ? [] : ['No certifications listed yet — the Master of Cyber Security comes first.']),
         ...p.certifications.map((c) => `${c.status.toUpperCase().padEnd(12)} ${c.name} — ${c.issuer}${c.date ? ` (${c.date})` : ''}${c.todo ? '  [TODO]' : ''}`),
@@ -116,6 +175,7 @@ export function files(): VFile[] {
       path: `projects/${pr.id}.md`,
       unlocked: () => session.unlockedProjects.has(pr.id),
       lockedHint: `exploit 443 ${pr.id}`,
+      render: () => projectDoc(pr),
       read: () => projectMarkdown(pr),
     });
   }
