@@ -83,6 +83,7 @@ export function files(): VFile[] {
       unlocked: () => session.compromised.has('certifications'),
       lockedHint: 'exploit 8443',
       read: () => [
+        ...(p.certifications.length ? [] : ['No certifications listed yet — the Master of Cyber Security comes first.']),
         ...p.certifications.map((c) => `${c.status.toUpperCase().padEnd(12)} ${c.name} — ${c.issuer}${c.date ? ` (${c.date})` : ''}${c.todo ? '  [TODO]' : ''}`),
         '',
         'Skills:',

@@ -14,7 +14,7 @@ export const portfolio: Portfolio = {
     siteTitle: 'Breach Me — Hariharan (hari.sec) · Cybersecurity Portfolio',
     description:
       'Hariharan (hari.sec): cybersecurity student in Melbourne targeting SOC analyst and pentester roles. Hack the portfolio in a live terminal while a SOC dashboard detects you — or open the one-page recruiter view.',
-    // TODO: set to your real deployed URL (no trailing slash).
+    // Deployed site URL (no trailing slash).
     url: 'https://hariharan2k03.github.io/breach-me',
   },
 
@@ -23,11 +23,11 @@ export const portfolio: Portfolio = {
     handle: 'hari.sec',
     tagline:
       'A cybersecurity portfolio that thinks like an attacker, defends like a SOC analyst, and builds for the future.',
-    level: 'Student',
+    level: 'Master of Cyber Security student',
     targetRoles: ['SOC Analyst', 'Penetration Tester', 'Computer Engineer'],
     location: 'Melbourne, Australia',
     summary:
-      'Cybersecurity student in Melbourne with a computer engineering background. I build security into software from the start: hash-chained, signed audit logs, AES-256-GCM encrypted backups, and CI pipelines that catch vulnerable dependencies before they ship. Looking for SOC analyst and penetration testing roles where I can detect, investigate and break things responsibly.',
+      'Master of Cyber Security student at RMIT University with a background in Electronics and Computer Engineering (B.Tech, VIT Chennai). I build security into software from the start: hash-chained, signed audit logs, AES-256-GCM encrypted backups, and CI pipelines that catch vulnerable dependencies before they ship. I understand AI and machine learning well and want to grow where AI and security meet. Looking for SOC analyst and penetration testing roles where I can detect, investigate and break things responsibly.',
     interests: [
       'Security operations and detection engineering (Sigma, Splunk SPL)',
       'Penetration testing and web application security (OWASP Top 10)',
@@ -40,7 +40,8 @@ export const portfolio: Portfolio = {
       'Name ........ Hariharan',
       'Role ........ Cybersecurity student → SOC analyst / pentester',
       'Base ........ Melbourne, Australia',
-      'Background .. Computer engineering (B.Tech), embedded systems, ML',
+      'Study ....... Master of Cyber Security @ RMIT University',
+      'Background .. B.Tech Electronics & Computer Engineering, VIT Chennai',
       'Currently ... building signed audit logs and encrypting things for fun',
       '',
       'Fun fact: I open and close a busy CBD store, so I already know',
@@ -55,7 +56,7 @@ export const portfolio: Portfolio = {
       // phone: '04xx xxx xxx' and set showPhone: true.
       showPhone: false,
     },
-    resume: 'resume.pdf', // TODO: replace public/resume.pdf with your real résumé
+    resume: 'resume.pdf', // public/resume.pdf — replace the file to update it
     photo: 'profile.jpg', // in /public — swap the file to change your portrait
   },
 
@@ -364,41 +365,37 @@ export const portfolio: Portfolio = {
     },
   ],
 
-  // TODO: confirm degree names, institutions and dates.
   education: [
     {
-      degree: 'Postgraduate study in Cyber Security', // TODO: exact degree name
+      degree: 'Master of Cyber Security',
       school: 'RMIT University',
-      location: 'Melbourne, VIC',
-      start: '', // TODO
+      location: 'Melbourne, VIC (City Campus)',
+      start: '2026',
       end: 'Present',
       details: [
+        'Two-year program. Focus areas: network and software security, cryptography, ethical hacking, penetration testing, risk management.',
         'Secure software development: built the integrity and audit layer of a secure e-voting platform (team of 5).',
         'Applied cryptography in practice: Ed25519 signatures, SHA-256 hash chains, Shamir secret sharing.',
-        'Secure SDLC: SAST/SCA in CI, security testing, CSP and HSTS hardening.',
       ],
     },
     {
-      degree: 'Bachelor of Technology (B.Tech)', // TODO: add major, e.g. "Electronics & Communication Engineering"
-      school: '', // TODO: university name
-      location: 'India',
-      start: '',
-      end: '', // TODO
+      degree: 'B.Tech in Electronics and Computer Engineering',
+      school: 'Vellore Institute of Technology (VIT)',
+      location: 'Chennai, India',
+      start: 'Sept 2021',
+      end: 'July 2025',
       details: [
+        'CGPA 7.70 / 10.',
+        'Relevant coursework: networks, operating systems, data structures, embedded systems, signal processing, machine learning.',
         'Capstone: Speech Emotion Recognition with an Xception CNN, 77.03% speaker-independent accuracy (team of 3).',
         'Project: EEG brain-computer interface for wheelchair control, 76% task accuracy.',
-        'Foundations in embedded systems, microcontrollers, sensors, PCB design and signal processing.',
       ],
     },
   ],
 
-  certifications: [
-    // TODO: replace these placeholders with your real certifications.
-    // todo: true hides an entry from recruiter view.
-    { name: 'CompTIA Security+', issuer: 'CompTIA', status: 'planned', todo: true },
-    { name: 'Blue Team Level 1 (BTL1)', issuer: 'Security Blue Team', status: 'planned', todo: true },
-    { name: 'eJPT', issuer: 'INE', status: 'planned', todo: true },
-  ],
+  // Add certifications here as you earn them, e.g.
+  // { name: 'CompTIA Security+', issuer: 'CompTIA', status: 'in-progress' },
+  certifications: [],
 
   skills: [
     {
