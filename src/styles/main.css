@@ -650,3 +650,13 @@ body { font-size: 15px; }
   .ch-codeline code { white-space: pre-wrap; word-break: break-word; }
   .ch-codeline { align-items: flex-start; padding-top: 6px; padding-bottom: 6px; }
 }
+
+/* Large screens: scale terminal text up so it never feels small */
+@media (min-width: 1600px) {
+  .term-body { font-size: 1.05rem; }
+  .chip { font-size: 0.95rem; padding: 10px 16px; }
+  .terminal, .soc { height: min(820px, calc(100svh - 100px)); }
+}
+@media (min-width: 1900px) {
+  .term-body { font-size: 1.15rem; }
+}
