@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hariharan2k03.github.io/breach-me/sitemap.xml

@@ -1,0 +1,27 @@
+/* Print: the incident report (when open) or the recruiter view. */
+@media print {
+  @page { margin: 14mm; }
+  html, body { background: #fff !important; color: #000 !important; }
+  body::before { display: none !important; }
+  .topbar, .skip-link, .chips, .sheet-toggle, .dlg-close, .rp-actions, .socials { display: none !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  .btn { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
+
+  /* Report mode: print only the report dialog */
+  body.print-report #app,
+  body.print-report dialog:not(#report-dialog) { display: none !important; }
+  body.print-report #report-dialog {
+    position: static !important; display: block !important; width: auto !important; max-height: none !important;
+    border: 0 !important; box-shadow: none !important; background: #fff !important; color: #000 !important; margin: 0 !important;
+  }
+  body.print-report #report-dialog::backdrop { display: none; }
+  body.print-report .dlg-body { max-height: none !important; overflow: visible !important; padding: 0 !important; }
+  body.print-report .rp-facts div, body.print-report .rp-timeline li, body.print-report .evidence-card { background: #fff !important; border-color: #bbb !important; }
+  body.print-report .muted, body.print-report .rp-sub { color: #333 !important; }
+  body.print-report .dlg h3, body.print-report .rp-verdict, body.print-report .rp-kicker, body.print-report .rp-timeline code { color: #000 !important; }
+  .rp-timeline li { break-inside: avoid; }
+
+  /* Hacker mode without report: print the recruiter-friendly parts only */
+  body:not(.print-report) .ops, body:not(.print-report) .skyline, body:not(.print-report) .portrait { display: none !important; }
+  .rv-card, .rv-job { break-inside: avoid; }
+}
