@@ -127,9 +127,11 @@ export class Terminal {
     this.scroll();
   }
 
-  printNode(node: Node): void {
+  /** alignTop: scroll so the node's top is visible (used for challenges). */
+  printNode(node: HTMLElement, alignTop = false): void {
     this.output.append(node);
-    this.scroll();
+    if (alignTop) this.output.scrollTop = Math.max(0, node.offsetTop - this.output.offsetTop - 8);
+    else this.scroll();
   }
 
   clear(): void {

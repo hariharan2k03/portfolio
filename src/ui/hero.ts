@@ -1,8 +1,8 @@
-/** Header, hero, projects panel and footer for hacker mode. */
+/** Header, hero and footer for hacker mode. Projects live in the terminal (and recruiter view). */
 import { asset, h, link, svg } from '../core/dom';
-import { bus, session } from '../core/state';
+import { bus } from '../core/state';
 import { portfolio as P } from '../data/portfolio';
-import { icon, projectIcon } from './icons';
+import { icon } from './icons';
 
 export function topBar(onRecruiter: () => void, mode: 'hacker' | 'recruiter'): HTMLElement {
   const btn = h(
@@ -19,7 +19,7 @@ export function topBar(onRecruiter: () => void, mode: 'hacker' | 'recruiter'): H
           'nav',
           { class: 'nav', 'aria-label': 'Sections' },
           navLink('#top', 'home', 'Home'),
-          navLink('#projects', 'code', 'Projects'),
+          projectsLink(),
           navLink('#skills', 'shield', 'Skills'),
           navLink('#about', 'user', 'About'),
           navLink('#contact', 'mail', 'Contact'),
@@ -45,6 +45,15 @@ export function topBar(onRecruiter: () => void, mode: 'hacker' | 'recruiter'): H
     nav,
     btn,
   );
+}
+
+function projectsLink(): HTMLAnchorElement {
+  const a = navLink('#ops', 'code', 'Projects');
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    bus.emit('runCommand', 'enum 443');
+  });
+  return a;
 }
 
 function navLink(href: string, ico: string, text: string): HTMLAnchorElement {
@@ -149,43 +158,6 @@ function skyline(): SVGElement {
     g,
     svg('rect', { x: 0, y: base, width: W, height: 90, class: 'water' }),
   );
-}
-
-export function projectsPanel(onClick: (id: string, locked: boolean) => void, onViewAll: () => void): HTMLElement {
-  const grid = h('div', { class: 'proj-grid' });
-  const render = () => {
-    grid.replaceChildren(
-      ...P.projects.map((p) => {
-        const locked = !session.unlockedProjects.has(p.id);
-        const b = h(
-          'button',
-          { type: 'button', class: `proj-card ${locked ? 'locked' : 'owned'}` },
-          projectIcon(p.icon),
-          h('span', { class: 'pj-text' }, h('strong', {}, shortTitle(p.title)), h('small', {}, p.kind)),
-          h('span', { class: 'pj-state' }, icon(locked ? 'lock' : 'unlock'), locked ? 'locked' : 'owned'),
-          h('span', { class: 'sr-only' }, locked ? ' — start the challenge in the terminal' : ' — open case study'),
-          h('span', { class: 'pj-arrow', 'aria-hidden': 'true' }, '→'),
-        );
-        b.addEventListener('click', () => onClick(p.id, locked));
-        return b;
-      }),
-    );
-  };
-  render();
-  bus.on('unlock', render);
-  const all = h('button', { type: 'button', class: 'linkish' }, 'View all ', h('span', { 'aria-hidden': 'true' }, '→'));
-  all.addEventListener('click', onViewAll);
-  return h(
-    'section',
-    { class: 'panel projects', id: 'projects', 'aria-labelledby': 'proj-title' },
-    h('header', { class: 'panel-head' }, icon('folder'), h('h2', { id: 'proj-title', class: 'panel-title' }, 'My Projects'), all),
-    h('p', { class: 'panel-sub' }, 'Each project is locked behind a 30-second challenge. Click one to start.'),
-    grid,
-  );
-}
-
-function shortTitle(t: string): string {
-  return t.split(':')[0].replace('Secure Electronic Voting Platform', 'Secure Voting');
 }
 
 export function footer(): HTMLElement {

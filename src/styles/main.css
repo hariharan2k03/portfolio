@@ -619,3 +619,34 @@ body.incident .soc { box-shadow: 0 0 0 1px rgba(255, 77, 109, 0.5), 0 0 30px rgb
 .dlg h3 { font-size: 1rem; }
 .rp-verdict { font-size: 1.35rem; }
 body { font-size: 15px; }
+
+/* ==========================================================================
+   Terminal-first layout: projects panel removed (projects live in the
+   terminal + recruiter view). Terminal 60% / SOC 40%, taller, one chip row.
+   ========================================================================== */
+.ops { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+.terminal, .soc { height: min(760px, calc(100svh - 110px)); min-height: 560px; }
+.chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--line-hi) transparent; padding-top: 10px; padding-bottom: 12px; }
+.chip { flex: none; }
+.term-body { font-size: 0.95rem; }
+@media (min-width: 1440px) {
+  .ops { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .terminal, .soc { height: min(760px, calc(100svh - 110px)); }
+}
+@media (max-width: 1023px) {
+  .ops { grid-template-columns: 1fr; }
+  .terminal { height: calc(100svh - 150px); min-height: 480px; }
+}
+
+/* SOC is 40% wide now: keep map above the feed unless the screen is very wide */
+@media (min-width: 1440px) and (max-width: 1799px) {
+  .soc-split { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .worldmap { max-height: 170px; }
+}
+@media (max-width: 640px) {
+  .brand-text strong { font-size: 1.1rem; white-space: nowrap; }
+  .brand-logo { width: 38px; height: 38px; }
+  .recruiter-btn { font-size: 0.8rem; padding: 0.5em 0.8em; }
+  .ch-codeline code { white-space: pre-wrap; word-break: break-word; }
+  .ch-codeline { align-items: flex-start; padding-top: 6px; padding-bottom: 6px; }
+}

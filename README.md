@@ -39,7 +39,7 @@ Search the file for `TODO` to find the remaining placeholders.
 
 ### Add a project
 
-Add an object to `projects` with a unique `id` (used in `exploit 443 <id>`, `cat projects/<id>.md`, `open <id>`) and a `challenge`. It appears automatically in `scan`, `enum 443`, the projects panel, chips, tab completion and the recruiter view.
+Add an object to `projects` with a unique `id` (used in `exploit 443 <id>`, `cat projects/<id>.md`, `open <id>`) and a `challenge`. It appears automatically in `scan`, `enum 443`, chips, tab completion and the recruiter view.
 
 ### Add or change a challenge
 
@@ -83,7 +83,7 @@ src/
   challenges/  ChallengeHost.ts (all 5 challenge types)
   report/      IncidentReport.ts
   recruiter/   RecruiterView.ts
-  ui/          hero.ts (top bar, hero, projects, footer) · Dialog.ts · icons.ts
+  ui/          hero.ts (top bar, hero, footer) · Dialog.ts · icons.ts
   styles/      main.css · recruiter.css · print.css
 scripts/       vite-plugin-sri.ts
 public/        resume.pdf · og-image.png · favicon.svg · robots.txt · sitemap.xml · .well-known/security.txt

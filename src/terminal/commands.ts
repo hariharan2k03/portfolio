@@ -307,6 +307,7 @@ function exploit(args: string[], input: string, ctx: Ctx): void {
         ctx.openCaseStudy(pr.id);
         checkThreshold(ctx);
       }),
+      true,
     );
     return;
   }
@@ -333,6 +334,7 @@ function exploit(args: string[], input: string, ctx: Ctx): void {
       refreshChips(ctx);
       checkThreshold(ctx);
     }),
+    true,
   );
 }
 
@@ -496,7 +498,7 @@ export function refreshChips(ctx: Ctx): void {
     add('hint');
     if (canSkip()) add('skip');
   }
-  if (!session.scanned) {
+  if (!session.scanned && session.enumerated.size === 0) {
     add('help');
     add('whoami');
     add('scan');
@@ -517,7 +519,7 @@ export function refreshChips(ctx: Ctx): void {
   if (chips.length < 4) add('ls -la');
   // De-dupe and cap so the row stays scannable
   const seen = new Set<string>();
-  ctx.term.setChips(chips.filter((c) => !seen.has(c.command) && seen.add(c.command)).slice(0, 8));
+  ctx.term.setChips(chips.filter((c) => !seen.has(c.command) && seen.add(c.command)).slice(0, 7));
 }
 
 /* ---------------------- tab completion ---------------------- */

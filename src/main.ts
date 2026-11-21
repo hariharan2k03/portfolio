@@ -14,7 +14,7 @@ import { Terminal } from './terminal/Terminal';
 import { completer, refreshChips, runCommand, type Ctx } from './terminal/commands';
 import { SocFeed } from './soc/SocFeed';
 import { caseStudy, makeDialog } from './ui/Dialog';
-import { footer, hero, projectsPanel, topBar } from './ui/hero';
+import { footer, hero, topBar } from './ui/hero';
 import { renderReport } from './report/IncidentReport';
 import { renderRecruiter } from './recruiter/RecruiterView';
 
@@ -86,21 +86,19 @@ function buildHacker(): HTMLElement {
     term.focus();
   };
 
-  const projects = projectsPanel(
-    (id, locked) => {
-      if (locked) {
-        focusTerminal();
-        term.exec(`exploit 443 ${id}`);
-      } else openCaseStudy(id);
-    },
-    () => setMode('recruiter', 'rv-projects'),
-  );
+
+
+  // Top-bar "Projects" link: jump to the terminal and list the projects there
+  bus.on('runCommand', (cmd) => {
+    focusTerminal();
+    term.exec(cmd);
+  });
 
   const main = h(
     'main',
     { id: 'main', tabindex: '-1' },
     hero(focusTerminal),
-    h('div', { class: 'ops', id: 'ops' }, term.root, soc.root, projects),
+    h('div', { class: 'ops', id: 'ops' }, term.root, soc.root),
   );
 
   const boot = [
