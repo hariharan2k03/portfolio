@@ -96,7 +96,7 @@ function portrait(): HTMLElement {
         src: asset(P.person.photo),
         alt: `Portrait of ${P.person.name}`,
         width: '900',
-        height: '846',
+        height: '869',
         decoding: 'async',
         fetchpriority: 'high',
       }),
