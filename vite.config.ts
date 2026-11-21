@@ -41,7 +41,7 @@ function siteUrl(url: string): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
-    // GitHub Pages project sites live under /<repo>/ — set BASE_PATH=/breach-me/ there.
+    // GitHub Pages project sites live under /<repo>/ — set BASE_PATH=/portfolio/ there.
     base: env.BASE_PATH || '/',
     plugins: [csp(), siteUrl(env.SITE_URL || portfolio.meta.url), sri()],
     build: {

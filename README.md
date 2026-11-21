@@ -101,7 +101,7 @@ public/        resume.pdf · og-image.png · favicon.svg · robots.txt · sitema
 
 ### GitHub Pages
 
-1. Push to a repo named `breach-me` (any name works).
+1. Push to a repo named `portfolio` (any name works).
 2. In the repo, go to **Settings → Pages → Source: GitHub Actions**.
 3. Push to `main`. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm audit`, builds with `BASE_PATH=/<repo>/`, and deploys.
 
@@ -111,7 +111,7 @@ GitHub Pages cannot set custom response headers, so the site relies on the CSP `
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `BASE_PATH` | `/` | URL prefix (`/breach-me/` for a GitHub project site) |
+| `BASE_PATH` | `/` | URL prefix (`/portfolio/` for a GitHub project site) |
 | `SITE_URL` | `meta.url` | Canonical / OG / JSON-LD URL |
 
 ## Regenerate the Open Graph image

@@ -15,7 +15,7 @@ export const portfolio: Portfolio = {
     description:
       'Hariharan (hari.sec): cybersecurity student in Melbourne targeting SOC analyst and pentester roles. Hack the portfolio in a live terminal while a SOC dashboard detects you — or open the one-page recruiter view.',
     // Deployed site URL (no trailing slash).
-    url: 'https://hariharan2k03.github.io/breach-me',
+    url: 'https://hariharan2k03.github.io/portfolio',
   },
 
   person: {
