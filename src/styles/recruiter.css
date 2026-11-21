@@ -75,3 +75,6 @@ html[data-mode='recruiter'] .muted { color: var(--muted); }
 .rv-interests { padding-left: 1.1em; margin: 6px 0 0; }
 .rv-jobtags { margin: 8px 0 0 !important; }
 .rv-takeaway { margin: 8px 0 0; padding-left: 10px; border-left: 3px solid var(--accent); color: var(--muted); font-size: 0.94rem; }
+.rv h1 { letter-spacing: -0.02em; }
+.rv-sec h2 { font-size: 1.35rem; }
+.rv-roles { font-size: 1rem; }

@@ -16,7 +16,6 @@
     "vite": "^8.3.8"
   },
   "dependencies": {
-    "@fontsource/jetbrains-mono": "^5.1.1",
-    "@fontsource/rajdhani": "^5.1.0"
+    "@fontsource/jetbrains-mono": "^5.1.1"
   }
 }

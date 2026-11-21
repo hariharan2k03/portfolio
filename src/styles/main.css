@@ -22,8 +22,9 @@
   --glow: 0 0 0 1px rgba(56, 217, 245, 0.25), 0 0 24px rgba(59, 140, 255, 0.18);
   --radius: 14px;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --display: 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
-  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Whole site uses JetBrains Mono */
+  --display: var(--mono);
+  --sans: var(--mono);
   --gutter: clamp(16px, 3vw, 40px);
   color-scheme: dark;
 }
@@ -154,8 +155,8 @@ button { font: inherit; color: inherit; }
 .p-path { color: var(--blue); }
 .blink, .cursor { animation: blink 1.1s steps(1) infinite; }
 .hero h1 {
-  font-family: var(--display); font-weight: 700; margin: 0;
-  font-size: clamp(3rem, 7.5vw, 6.6rem); line-height: 0.95; letter-spacing: 0.01em;
+  font-family: var(--display); font-weight: 800; margin: 0;
+  font-size: clamp(2.5rem, 6.2vw, 5.6rem); line-height: 1; letter-spacing: -0.03em;
   text-shadow: 0 0 30px rgba(59, 140, 255, 0.35);
 }
 .hero h1 .accent { color: var(--cyan); text-shadow: 0 0 24px rgba(56, 217, 245, 0.55); }
@@ -604,3 +605,17 @@ body.incident .soc { box-shadow: 0 0 0 1px rgba(255, 77, 109, 0.5), 0 0 30px rgb
   .hero { grid-template-columns: 1fr; }
   .portrait.has-photo { display: block; order: -1; max-width: 340px; margin: -8px auto -40px; }
 }
+
+/* JetBrains Mono everywhere: monospace runs wider, so tighten display sizes */
+.hero-verbs { letter-spacing: 0.16em; font-size: clamp(0.85rem, 1.25vw, 1.1rem); }
+.hero-lede { font-size: 1.02rem; }
+.nav-link { font-size: 0.92rem; padding: 10px 12px; }
+.brand-text strong { font-size: 1.3rem; }
+.pc-name { font-size: 1.45rem; }
+.panel-title { font-size: 1.08rem; }
+.pj-text strong { font-size: 0.98rem; }
+.ttp { font-size: 0.8rem; }
+.dlg h2 { font-size: 1.55rem; }
+.dlg h3 { font-size: 1rem; }
+.rp-verdict { font-size: 1.35rem; }
+body { font-size: 15px; }
