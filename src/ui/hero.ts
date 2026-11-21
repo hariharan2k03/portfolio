@@ -38,9 +38,14 @@ export function topBar(onRecruiter: () => void, mode: 'hacker' | 'recruiter'): H
     { class: 'topbar' },
     h(
       'a',
-      { class: 'brand', href: '#top', 'aria-label': `Breach Me — ${P.person.handle} home` },
-      h('span', { class: 'brand-logo', 'aria-hidden': 'true' }, icon('shield')),
-      h('span', { class: 'brand-text' }, h('strong', {}, 'Breach Me'), h('small', {}, 'Cybersecurity Portfolio')),
+      { class: 'brand', href: '#top', 'aria-label': `${P.person.handle} — ${P.person.name}, back to top` },
+      h('span', { class: 'brand-logo', 'aria-hidden': 'true' }, '>_'),
+      h(
+        'span',
+        { class: 'brand-text', 'aria-hidden': 'true' },
+        h('strong', {}, 'hari', h('span', { class: 'brand-dot' }, '.sec'), h('span', { class: 'blink brand-cursor' }, '_')),
+        h('small', {}, `${P.person.name} · SOC / Pentest`),
+      ),
     ),
     nav,
     btn,

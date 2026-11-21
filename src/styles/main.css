@@ -692,3 +692,9 @@ body { font-size: 15px; }
 .hero-verbs .verb { transition: color 0.3s, text-shadow 0.3s; }
 .hero-verbs .verb.active { color: var(--cyan); text-shadow: 0 0 14px rgba(56, 217, 245, 0.6); }
 .hero-verbs .dot { color: var(--dim); }
+
+/* Top-left brand: hari.sec handle with a terminal glyph */
+.brand-logo { font-family: var(--mono); font-weight: 800; font-size: 1.05rem; color: var(--cyan); letter-spacing: -0.05em; }
+.brand-text strong { color: var(--text); letter-spacing: -0.01em; }
+.brand-dot { color: var(--cyan); text-shadow: 0 0 12px rgba(56, 217, 245, 0.55); }
+.brand-cursor { color: var(--cyan); }

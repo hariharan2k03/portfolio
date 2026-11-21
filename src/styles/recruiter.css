@@ -78,3 +78,7 @@ html[data-mode='recruiter'] .muted { color: var(--muted); }
 .rv h1 { letter-spacing: -0.02em; }
 .rv-sec h2 { font-size: 1.35rem; }
 .rv-roles { font-size: 1rem; }
+
+html[data-mode='recruiter'] .brand-logo { color: var(--accent); }
+html[data-mode='recruiter'] .brand-text strong { color: var(--text); }
+html[data-mode='recruiter'] .brand-dot, html[data-mode='recruiter'] .brand-cursor { color: var(--accent); text-shadow: none; }
