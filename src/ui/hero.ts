@@ -60,6 +60,53 @@ function navLink(href: string, ico: string, text: string): HTMLAnchorElement {
   return h('a', { href, class: 'nav-link' }, icon(ico), text);
 }
 
+const WORDS = ['Breach', 'Explore', 'Hack', 'Inspect', 'Hire'];
+const verbSpans = WORDS.slice(1).map((w) => h('span', { class: 'verb' }, w));
+const verbsLine = h(
+  'p',
+  { class: 'hero-verbs' },
+  verbSpans.flatMap((v, i) => (i ? [h('span', { class: 'dot', 'aria-hidden': 'true' }, ' • '), v] : [v])),
+);
+
+/**
+ * "Breach Me" → "Explore Me" → "Hack Me" → "Inspect Me" → "Hire Me", typed and
+ * deleted like a terminal. Screen readers always get the stable "Breach Me";
+ * with prefers-reduced-motion the title stays still.
+ */
+function rotatingTitle(): HTMLElement {
+  const word = h('span', { class: 'hero-word' }, WORDS[0]);
+  const title = h(
+    'h1',
+    { id: 'hero-title' },
+    h('span', { class: 'sr-only' }, 'Breach Me'),
+    h('span', { 'aria-hidden': 'true' }, word, ' ', h('span', { class: 'accent' }, 'Me'), h('span', { class: 'cursor' }, '_')),
+  );
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return title;
+
+  let idx = 0;
+  const sleep = (ms: number) => new Promise((r) => window.setTimeout(r, ms));
+  const highlight = () => verbSpans.forEach((v, i) => v.classList.toggle('active', i === idx - 1));
+  (async () => {
+    for (;;) {
+      await sleep(2200);
+      if (document.hidden) continue;
+      const current = WORDS[idx];
+      for (let n = current.length; n >= 0; n--) {
+        word.textContent = current.slice(0, n);
+        await sleep(55);
+      }
+      idx = (idx + 1) % WORDS.length;
+      highlight();
+      const next = WORDS[idx];
+      for (let n = 1; n <= next.length; n++) {
+        word.textContent = next.slice(0, n);
+        await sleep(85);
+      }
+    }
+  })();
+  return title;
+}
+
 export function hero(onStart: () => void): HTMLElement {
   const start = h('button', { type: 'button', class: 'btn primary glow' }, h('span', { class: 'mono' }, '>_'), 'Start the terminal', h('span', { 'aria-hidden': 'true' }, '→'));
   start.addEventListener('click', onStart);
@@ -71,8 +118,8 @@ export function hero(onStart: () => void): HTMLElement {
       'div',
       { class: 'hero-copy' },
       h('p', { class: 'hero-prompt mono', 'aria-hidden': 'true' }, h('span', { class: 'p-user' }, `${P.person.handle}@breachme`), ':~$ ', h('span', { class: 'blink' }, '▌')),
-      h('h1', { id: 'hero-title' }, 'Breach ', h('span', { class: 'accent' }, 'Me'), h('span', { class: 'cursor', 'aria-hidden': 'true' }, '_')),
-      h('p', { class: 'hero-verbs' }, 'Explore • Hack • Inspect • Hire'),
+      rotatingTitle(),
+      verbsLine,
       h('p', { class: 'hero-lede' }, P.person.tagline),
       h(
         'div',

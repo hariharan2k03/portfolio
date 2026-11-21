@@ -685,3 +685,10 @@ body { font-size: 15px; }
 .tdoc-note { margin: 10px 0 0; padding: 6px 10px; border-radius: 6px; background: rgba(47, 224, 181, 0.07); color: var(--teal); font-size: 0.9em; }
 .tdoc-links { margin: 10px 0 0; display: flex; gap: 14px; }
 @media (max-width: 640px) { .tdoc-entry { padding: 10px 12px; } }
+
+/* Rotating headline word: "Me" follows the typed word, like a real prompt */
+.hero-word { white-space: pre; }
+.hero h1 .cursor { margin-left: -0.05em; }
+.hero-verbs .verb { transition: color 0.3s, text-shadow 0.3s; }
+.hero-verbs .verb.active { color: var(--cyan); text-shadow: 0 0 14px rgba(56, 217, 245, 0.6); }
+.hero-verbs .dot { color: var(--dim); }
