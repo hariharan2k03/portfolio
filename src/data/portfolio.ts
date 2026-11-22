@@ -57,7 +57,7 @@ export const portfolio: Portfolio = {
       showPhone: false,
     },
     resume: 'resume.pdf', // public/resume.pdf — replace the file to update it
-    photo: 'profile-2.jpg', // in /public — swap the file to change your portrait
+    photo: 'profile-3.jpg', // in /public — swap the file to change your portrait
   },
 
   services: [
