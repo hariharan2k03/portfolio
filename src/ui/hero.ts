@@ -44,7 +44,7 @@ export function topBar(onRecruiter: () => void, mode: 'hacker' | 'recruiter'): H
         'span',
         { class: 'brand-text', 'aria-hidden': 'true' },
         h('strong', {}, 'hari', h('span', { class: 'brand-dot' }, '.sec'), h('span', { class: 'blink brand-cursor' }, '_')),
-        h('small', {}, `${P.person.name} · SOC / Pentest`),
+        h('small', {}, P.person.name),
       ),
     ),
     nav,
@@ -178,7 +178,7 @@ function profileCard(): HTMLElement {
       {},
       h('li', {}, icon('cap'), P.person.level),
       h('li', {}, icon('pin'), P.person.location),
-      h('li', {}, icon('target'), h('span', {}, h('span', { class: 'pc-k' }, 'Target roles'), h('br'), P.person.targetRoles.slice(0, 2).join(' · '))),
+      h('li', {}, icon('shield'), h('span', {}, h('span', { class: 'pc-k' }, 'Focus'), h('br'), 'Network & software security, ethical hacking')),
     ),
   );
 }

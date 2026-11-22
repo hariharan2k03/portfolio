@@ -38,7 +38,7 @@ export const portfolio: Portfolio = {
       'uid=1337(hari.sec) gid=1337(defenders) groups=1337(defenders),31337(red-team)',
       '',
       'Name ........ Hariharan',
-      'Role ........ Cybersecurity student → SOC analyst / pentester',
+      'Role ........ Cybersecurity student',
       'Base ........ Melbourne, Australia',
       'Study ....... Master of Cyber Security @ RMIT University',
       'Background .. B.Tech Electronics & Computer Engineering, VIT Chennai',

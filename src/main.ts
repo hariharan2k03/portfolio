@@ -156,7 +156,7 @@ function render(anchor?: string): void {
   if (current === 'hacker') hackerMain ??= buildHacker();
   const body = current === 'hacker' ? [hackerMain!, footer()] : [renderRecruiter()];
   app.replaceChildren(skip, bar, ...body);
-  document.title = current === 'hacker' ? portfolio.meta.siteTitle : `${portfolio.person.name} — Résumé · ${portfolio.person.targetRoles.slice(0, 2).join(' / ')}`;
+  document.title = current === 'hacker' ? portfolio.meta.siteTitle : `${portfolio.person.name} — Résumé`;
   if (anchor) document.getElementById(anchor)?.scrollIntoView();
   else window.scrollTo(0, 0);
 }

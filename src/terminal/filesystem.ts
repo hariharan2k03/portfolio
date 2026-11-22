@@ -75,7 +75,7 @@ export function files(): VFile[] {
             entries: [
               {
                 title: `${p.person.name} (${p.person.handle})`,
-                meta: `${p.person.location} · ${p.person.targetRoles.join(' · ')}`,
+                meta: p.person.location,
                 text: p.person.summary,
               },
             ],
@@ -93,7 +93,6 @@ export function files(): VFile[] {
       read: () => [
         p.person.summary,
         '',
-        `Target roles: ${p.person.targetRoles.join(', ')}`,
         `Location: ${p.person.location}`,
         '',
         'Focus areas:',

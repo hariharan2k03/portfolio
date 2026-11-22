@@ -24,7 +24,7 @@ export function renderRecruiter(): HTMLElement {
         {},
         h('p', { class: 'rv-kicker' }, `${P.person.level} · ${P.person.location}`),
         h('h1', {}, P.person.name, h('span', { class: 'rv-handle' }, ` (${P.person.handle})`)),
-        h('p', { class: 'rv-roles' }, P.person.targetRoles.join(' · ')),
+        h('p', { class: 'rv-roles' }, 'Master of Cyber Security · RMIT University'),
       ),
       h(
         'div',
