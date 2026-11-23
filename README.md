@@ -34,6 +34,8 @@ Search the file for `TODO` to find the remaining placeholders.
 | Project screenshots | Add to `public/projects/`, list them in the project's `screenshots` |
 | Phone number | Add `links.phone` and set `showPhone: true` (off by default on purpose) |
 | Certifications | Edit `certifications`. Entries with `todo: true` are hidden from recruiter view |
+| Recruiter-view stat counters | `person.stats` (value, suffix, label) |
+| Rotating tagline under your name (recruiter view) | `person.taglines` |
 | SOC analyst notes / ATT&CK mappings | [`src/soc/attack.ts`](src/soc/attack.ts) |
 | Site URL (canonical, OG, JSON-LD) | `meta.url` in `portfolio.ts`, plus `public/robots.txt`, `public/sitemap.xml`, `public/.well-known/security.txt` |
 

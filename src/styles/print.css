@@ -25,3 +25,11 @@
   body:not(.print-report) .ops, body:not(.print-report) .skyline, body:not(.print-report) .portrait { display: none !important; }
   .rv-card, .rv-job { break-inside: avoid; }
 }
+@media print {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .rv-bg, .rv-progress, .rv-float, .rv-more summary { display: none !important; }
+  .rv-more-body { display: block !important; }
+  .rv-contact-card { background: #fff !important; color: #000 !important; border: 1px solid #bbb; }
+  .rv-contact-card h2, .rv-contact-card p { color: #000 !important; }
+  .rv-grad, .rv-h2-num { color: #000 !important; background: none !important; }
+}

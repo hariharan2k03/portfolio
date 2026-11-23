@@ -28,6 +28,20 @@ export const portfolio: Portfolio = {
     location: 'Melbourne, Australia',
     summary:
       'Master of Cyber Security student at RMIT University with a background in Electronics and Computer Engineering (B.Tech, VIT Chennai). I build security into software from the start: hash-chained, signed audit logs, AES-256-GCM encrypted backups, and CI pipelines that catch vulnerable dependencies before they ship. I understand AI and machine learning well and want to grow where AI and security meet. Looking for SOC analyst and penetration testing roles where I can detect, investigate and break things responsibly.',
+    // Numbers below come straight from the project outcomes.
+    stats: [
+      { value: 150, suffix: '+', label: 'security tests written (e-voting)' },
+      { value: 146, label: 'automated Jest tests (MyOrbit)' },
+      { value: 77.03, decimals: 2, suffix: '%', label: 'speaker-independent accuracy' },
+      { value: 4, label: 'vulnerable dependencies caught in CI' },
+    ],
+    taglines: [
+      'Master of Cyber Security @ RMIT University',
+      'B.Tech Electronics & Computer Engineering @ VIT Chennai',
+      'Builds tamper-evident, signed audit systems',
+      'Applied cryptography · Secure SDLC · OWASP',
+      'Privacy-first engineer: data stays on the device',
+    ],
     interests: [
       'Security operations and detection engineering (Sigma, Splunk SPL)',
       'Penetration testing and web application security (OWASP Top 10)',

@@ -44,6 +44,10 @@ export interface Person {
   location: string;
   /** Recruiter-view summary paragraph. */
   summary: string;
+  /** Headline numbers animated in recruiter view (count up on scroll). */
+  stats?: { value: number; decimals?: number; suffix?: string; label: string }[];
+  /** Phrases that rotate under your name in recruiter view. */
+  taglines?: string[];
   /** Short "what I'm focused on / learning" list for About. */
   interests: string[];
   /** Lines printed by `whoami`. */
