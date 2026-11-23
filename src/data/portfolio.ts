@@ -71,6 +71,7 @@ export const portfolio: Portfolio = {
       showPhone: false,
     },
     resume: 'resume.pdf', // public/resume.pdf — replace the file to update it
+    recruiterPhoto: 'recruiter-photo.jpg', // square crop; recruiter-photo-sm.jpg is the small copy
     photo: 'profile-3.jpg', // in /public — swap the file to change your portrait
   },
 
@@ -327,6 +328,7 @@ export const portfolio: Portfolio = {
     {
       org: 'Bharat Electronics Limited',
       title: 'Project Intern',
+      type: 'Internship · 3 months',
       location: 'Ghaziabad, India',
       start: 'Oct 2023',
       end: 'Dec 2023',
@@ -341,6 +343,7 @@ export const portfolio: Portfolio = {
     {
       org: 'Infinigoal',
       title: 'IT and Digital Marketing Lead',
+      type: 'Leadership role',
       location: 'Chennai, India',
       start: '2024',
       end: '2025',
@@ -356,6 +359,7 @@ export const portfolio: Portfolio = {
       // Part-time roles alongside the Master's, combined into one entry
       org: "Subway · Nando's",
       title: 'Part-time hospitality roles',
+      type: 'Part-time, alongside my Master’s',
       location: 'Melbourne, VIC',
       start: 'Feb 2026',
       end: 'Present',

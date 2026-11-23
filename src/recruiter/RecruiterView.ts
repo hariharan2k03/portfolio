@@ -9,6 +9,8 @@ import { portfolio as P } from '../data/portfolio';
 import type { Education, Job, Project } from '../data/schema';
 import { icon, projectIcon } from '../ui/icons';
 
+const rvPhoto = (): string => P.person.recruiterPhoto || P.person.photo;
+
 const SKILL_ICONS: Record<string, string> = {
   Security: 'shield',
   Languages: 'code',
@@ -128,19 +130,19 @@ function hero(): HTMLElement {
           )
         : null,
     ),
-    P.person.photo
+    (P.person.recruiterPhoto || P.person.photo)
       ? h(
           'div',
           { class: 'rv-photo reveal', 'data-delay': '2' },
           h('span', { class: 'rv-ring', 'aria-hidden': 'true' }),
           h('img', {
-            src: asset(P.person.photo),
+            src: asset(rvPhoto()),
             // Smaller copy for the 380px circle; full size only for high-DPI screens
-            srcset: `${asset(P.person.photo.replace(/(\.\w+)$/, '-sm$1'))} 520w, ${asset(P.person.photo)} 839w`,
+            srcset: `${asset(rvPhoto().replace(/(\.\w+)$/, '-sm$1'))} 520w, ${asset(rvPhoto())} 840w`,
             sizes: '(max-width: 900px) 260px, 380px',
             alt: `Portrait of ${P.person.name}`,
-            width: '839',
-            height: '900',
+            width: '840',
+            height: '840',
             decoding: 'async',
             fetchpriority: 'high',
           }),
@@ -154,9 +156,7 @@ function hero(): HTMLElement {
 
 function projectCard(p: Project, n: number): HTMLElement {
   const more: [string, string[] | undefined][] = [
-    ['How I built it', p.approach],
-    ['Challenges & solutions', p.challenges],
-    ['Security angle', p.security],
+    ['Challenges & how I solved them', p.challenges],
     ['What I learned', p.learned],
   ];
   return h(
@@ -170,12 +170,18 @@ function projectCard(p: Project, n: number): HTMLElement {
       h('div', {}, h('h3', {}, p.title), p.role ? h('p', { class: 'muted' }, p.role) : h('p', { class: 'muted' }, p.kind)),
     ),
     h('p', { class: 'rv-problem' }, p.problem),
+    h('h4', { class: 'rv-k' }, 'What I built'),
+    h('ul', { class: 'rv-built' }, p.approach.map((a) => h('li', {}, a))),
+    h('h4', { class: 'rv-k' }, 'Results'),
     h('ul', { class: 'rv-results' }, p.outcomes.map((o) => h('li', {}, o))),
+    p.security?.length ? h('h4', { class: 'rv-k' }, 'Security angle') : null,
+    p.security?.length ? h('ul', { class: 'rv-built rv-sec-list' }, p.security.map((x) => h('li', {}, x))) : null,
+    h('h4', { class: 'rv-k' }, 'Tools'),
     h('ul', { class: 'tags small' }, p.tools.map((t) => h('li', {}, t))),
     h(
       'details',
       { class: 'rv-more' },
-      h('summary', {}, h('span', { class: 'rv-more-label' }, 'Read the full case study'), h('span', { class: 'rv-more-chev', 'aria-hidden': 'true' }, '▾')),
+      h('summary', {}, h('span', { class: 'rv-more-label' }, 'Challenges & lessons learned'), h('span', { class: 'rv-more-chev', 'aria-hidden': 'true' }, '▾')),
       h(
         'div',
         { class: 'rv-more-body' },
@@ -201,10 +207,12 @@ function jobItem(j: Job): HTMLElement {
       'article',
       { class: 'rv-tl-card' },
       h('div', { class: 'rv-job-head' }, h('h3', {}, j.title, h('span', { class: 'rv-org' }, ` · ${j.org}`)), h('span', { class: 'rv-date' }, `${j.start} – ${j.end}`)),
-      h('p', { class: 'muted rv-loc' }, j.location),
+      h('p', { class: 'rv-loc' }, j.type ? h('span', { class: 'rv-type' }, j.type) : null, h('span', { class: 'muted' }, j.location)),
+      h('h4', { class: 'rv-k' }, 'What I did'),
       h('ul', {}, j.bullets.map((b) => h('li', {}, b))),
+      j.skills?.length ? h('h4', { class: 'rv-k' }, 'Skills used') : null,
       j.skills?.length ? h('ul', { class: 'tags small rv-jobtags' }, j.skills.map((t) => h('li', {}, t))) : null,
-      j.takeaway ? h('p', { class: 'rv-takeaway' }, j.takeaway) : null,
+      j.takeaway ? h('p', { class: 'rv-takeaway' }, h('strong', {}, 'Why it matters for security: '), j.takeaway) : null,
     ),
   );
 }
@@ -263,7 +271,7 @@ function section(id: string, title: string, ...children: (HTMLElement | null)[])
   return h(
     'section',
     { class: 'rv-sec', id: `rv-${id}`, 'aria-labelledby': `rv-${id}-h` },
-    h('h2', { id: `rv-${id}-h`, class: 'reveal' }, h('span', { class: 'rv-h2-num', 'aria-hidden': 'true' }, '// '), title),
+    h('h2', { id: `rv-${id}-h`, class: 'reveal' }, title),
     ...children,
   );
 }

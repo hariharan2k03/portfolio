@@ -64,6 +64,8 @@ export interface Person {
   resume: string;
   /** Path relative to /public. Leave empty to show the placeholder avatar. */
   photo: string;
+  /** Optional separate (square) photo for the light recruiter view. A "-sm" copy is used on small screens. */
+  recruiterPhoto?: string;
 }
 
 export interface Service {
@@ -111,6 +113,8 @@ export interface Job {
   start: string;
   end: string;
   bullets: string[];
+  /** Short label such as "Internship" or "Part-time", shown as a badge. */
+  type?: string;
   /** Skills used, shown as tags. */
   skills?: string[];
   /** One line on why this role matters for security work. */
